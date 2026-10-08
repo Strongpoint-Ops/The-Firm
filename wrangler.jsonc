@@ -1,0 +1,19 @@
+{
+  // The Strongpoint Firm — strongpointops.com. Static assets only, no Worker
+  // script, no gate.
+  //
+  // ⚠ "name" MUST match the Worker name in the Cloudflare dashboard or the
+  // build fails with no useful error. This assumes Cloudflare defaulted the
+  // Worker name to the repo name when the repo was imported. If the Worker is
+  // called something else, change this line — it is the whole fix.
+  //
+  // Deploy command is a DASHBOARD setting: use `npx wrangler deploy`, never a
+  // bare `wrangler deploy`.
+  "name": "the-firm",
+  "compatibility_date": "2026-10-08",
+  "assets": {
+    "directory": "./site",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

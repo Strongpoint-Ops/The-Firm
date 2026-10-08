@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Strongpoint Firm — C-Suite Advisory</title>
+<meta name="description" content="Executive advisory that comes with the companies to execute it: digital and brand development, construction management and contracting, and owner's representative project management.">
+<!--
+  PLACEHOLDERS — fill before this is used commercially:
+  [surname] [EMAIL] [PHONE] [CCB #] [registry #]
+  Confirm COBID / DBE / SDVOSB status before claiming any of it.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Strongpoint parent theme — see the brand playbook, tokens/theme-parent.css.
+   The only light-grounded property in the group: the holding company is the
+   one that isn't an operating console, and the ground says so. */
+:root{
+  --ground:#f2f2f3; --surface:#e9e9ea; --surface-2:#e0e0e2;
+  --line:color-mix(in srgb,#1d1f20 16%,transparent);
+  --line-bright:color-mix(in srgb,#1d1f20 30%,transparent);
+  --fg:#1d1f20; --fg-dim:#5d5d60; --fg-faint:#7a7a7d;
+  --accent:#4c7094; --accent-lo:#2c455d; --accent-hi:#416180;
+  --family:#6f8fa8;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+section[id]{scroll-margin-top:84px}
+body{margin:0;background:var(--ground);color:var(--fg);font-family:var(--body);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:.005em;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 16px}
+.eyebrow.dim{color:var(--fg-faint)}
+
+header{position:sticky;top:0;z-index:40;background:rgba(242,242,243,.92);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.hdr{display:flex;align-items:center;gap:24px;height:68px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;margin-right:auto}
+.mark .glyph{width:30px;height:30px;border:1px solid var(--accent);display:grid;place-items:center;
+  font-family:var(--display);font-size:16px;color:var(--accent);position:relative;flex:none}
+.mark .glyph::after{content:"";position:absolute;inset:3px;border:1px solid var(--accent-lo);opacity:.55}
+.mark .wm{font-family:var(--display);font-size:20px;letter-spacing:.07em;text-transform:uppercase}
+.tk{color:var(--accent);border-bottom:1px dashed var(--accent);font-family:var(--mono);font-size:.88em}
+.mark .wm small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+  color:var(--fg-faint);text-transform:none;margin-top:1px}
+nav{display:flex;align-items:center;gap:26px}
+nav a{font-size:14px;color:var(--fg-dim);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
+nav a:hover{color:var(--fg);border-bottom-color:var(--accent)}
+/* a link that leaves this property — marked, so nobody is surprised by it */
+nav a.xlink{color:var(--family)}
+nav a.xlink:hover{color:var(--accent-lo);border-bottom-color:var(--family)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-size:15px;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:10px 18px;
+  border:1px solid var(--accent);color:#fff;background:var(--accent);cursor:pointer;
+  transition:background .15s,border-color .15s}
+.btn:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
+.btn.ghost{background:none;color:var(--accent)}
+.btn.ghost:hover{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent-lo)}
+.btn.sm{font-size:13.5px;padding:8px 14px}
+.menu-btn{display:none;background:none;border:1px solid var(--line-bright);color:var(--fg);
+  padding:7px 11px;font-family:var(--mono);font-size:12px;cursor:pointer}
+
+/* blueprint frame — the parent's inherited tell */
+.plate{position:relative;border:1px solid var(--line)}
+.corner{position:absolute;width:12px;height:12px;color:var(--line-bright)}
+.corner::before,.corner::after{content:"";position:absolute;background:currentColor}
+.corner::before{width:12px;height:1px}.corner::after{width:1px;height:12px}
+.corner.tl{top:-1px;left:-1px}
+.corner.tr{top:-1px;right:-1px}.corner.tr::before{right:0}.corner.tr::after{right:0}
+.corner.bl{bottom:-1px;left:-1px}.corner.bl::before{bottom:0}.corner.bl::after{bottom:0}
+.corner.br{bottom:-1px;right:-1px}.corner.br::before{bottom:0;right:0}.corner.br::after{bottom:0;right:0}
+
+.hero{padding:96px 0 84px}
+h1{font-size:clamp(40px,6vw,72px);max-width:15ch}
+.lede{font-size:clamp(17px,1.5vw,20px);color:var(--fg-dim);margin:26px 0 0;max-width:62ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 0}
+
+.band{border-top:1px solid var(--line);padding:84px 0}
+.band.tint{background:var(--surface)}
+.sec-head{max-width:720px;margin:0 0 44px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px)}
+.sec-head p{color:var(--fg-dim);margin:18px 0 0}
+
+/* the three lines */
+.lines{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* Cards stretch to equal height, so the delivery line has to be pushed to
+   the bottom or it floats wherever the copy happens to end. */
+.line{background:var(--ground);padding:30px 28px 32px;display:flex;flex-direction:column}
+.line .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:14px}
+.line h3{font-size:25px;margin:0 0 12px}
+.line p{font-size:15.5px;color:var(--fg-dim);margin:0 0 16px}
+.line ul{margin:0 0 20px;padding:0 0 0 18px}
+.line li{font-size:14.5px;color:var(--fg-dim);margin:0 0 8px}
+.line .via{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--fg-faint);
+  border-top:1px solid var(--line);padding-top:14px;margin:auto 0 0}
+.line .via a{color:var(--family);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,#6f8fa8 45%,transparent)}
+.line .via a:hover{color:var(--accent-lo)}
+.line .via span{color:var(--fg-faint)}
+
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
+.plist{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.plist li{border-bottom:1px solid var(--line);padding:17px 0;display:flex;gap:18px;align-items:baseline}
+.plist .num{font-family:var(--mono);font-size:11px;color:var(--accent);flex:none;width:26px}
+.plist .tx{font-size:15.5px;color:var(--fg-dim)}
+.plist .tx b{color:var(--fg);font-weight:600}
+.two p{color:var(--fg-dim)}
+.orgs{margin:16px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.orgs li{border-bottom:1px solid var(--line);padding:16px 0}
+.orgs b{display:block;font-family:var(--display);font-size:20px;font-weight:600}
+.orgs em{display:block;font-style:normal;font-size:14.5px;color:var(--fg-dim);margin:5px 0 7px}
+.orgs a{font-family:var(--mono);font-size:11.5px;color:var(--family);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,#6f8fa8 45%,transparent)}
+.orgs a:hover{color:var(--accent-lo)}
+.bill{margin:26px 0 0;border-top:1px solid var(--line)}
+.bill div{border-bottom:1px solid var(--line);padding:14px 0}
+.bill b{font-family:var(--display);font-size:18px;display:block;margin-bottom:4px}
+.bill span{font-size:14.5px;color:var(--fg-dim)}
+.orgs .stat,.line .via .stat{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--fg-faint);border:1px solid var(--line-bright);
+  padding:2px 7px;font-style:normal;display:inline-block}
+.line .via .stat{margin-left:6px}
+
+/* Newsletter — the firm's lead generator. The qualifying selects are the point:
+   an email alone tells us nothing about whether a lead is worth a call. */
+.news{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.news .qual{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.nf{margin:0 0 16px}
+.nf label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--fg-faint);margin:0 0 7px}
+.nf input,.nf select{width:100%;background:#fff;border:1px solid var(--line-bright);color:var(--fg);
+  font:inherit;font-family:var(--body);font-size:15px;padding:11px 13px}
+.nf input:focus,.nf select:focus{outline:1px solid var(--accent);border-color:var(--accent)}
+.news .said{display:none;border:1px solid var(--accent);padding:20px;margin:0 0 18px}
+.news .said b{font-family:var(--display);font-size:20px;display:block;margin-bottom:6px}
+.issues{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.issues li{border-bottom:1px solid var(--line);padding:15px 0}
+.issues b{display:block;font-size:16px;font-weight:600}
+.issues em{display:block;font-style:normal;font-size:14px;color:var(--fg-faint);margin-top:3px}
+@media (max-width:980px){ .news{grid-template-columns:1fr;gap:34px} .news .qual{grid-template-columns:1fr} }
+
+.creds{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line)}
+.creds div{background:var(--ground);padding:22px 20px}
+.creds .k{font-family:var(--display);font-size:22px}
+.creds .v{font-size:13px;color:var(--fg-faint);margin-top:5px;line-height:1.45}
+
+.cta{border-top:1px solid var(--line);padding:92px 0;text-align:center}
+.cta h2{font-size:clamp(30px,4.2vw,48px);max-width:20ch;margin:0 auto}
+.cta p{color:var(--fg-dim);max-width:56ch;margin:20px auto 0}
+.cta .row{display:flex;gap:12px;justify-content:center;margin:32px 0 0;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;color:var(--fg-faint)}
+.foot{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.foot a{text-decoration:none;color:var(--fg-faint)}
+.foot a:hover{color:var(--fg)}
+.foot .sp{margin-left:auto;max-width:460px;text-align:right;line-height:1.55;font-size:12.5px}
+.foot .sp a{color:var(--family)}
+
+@media (max-width:980px){
+  .lines{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr;gap:38px}
+}
+@media (max-width:760px){
+  nav{display:none}
+  nav.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;
+    align-items:flex-start;gap:0;background:var(--ground);border-bottom:1px solid var(--line);padding:6px 24px 14px}
+  nav.open a{padding:12px 0;width:100%;border-bottom:1px solid var(--line)}
+  .menu-btn{display:block}
+  .hero{padding:64px 0 56px}
+  .band,.cta{padding:60px 0}
+  .foot .sp{text-align:left;margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hdr">
+    <a class="mark" href="index.html">
+      <span class="glyph">S</span>
+      <span class="wm">Strongpoint<small>The Strongpoint Firm</small></span>
+    </a>
+    <nav id="nav">
+      <a href="#practice">Practice</a>
+      <a href="#engage">Engagement</a>
+      <a href="#notes">Market Notes</a>
+      <a href="#companies">The firm</a>
+      <a href="https://principal.strongpointops.com/" class="xlink">Principal &#8599;</a>
+      <a class="btn sm" href="contact.html">Start a conversation</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">MENU</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">C-suite advisory &middot; Delivered through our own companies</p>
+    <h1>Advice you can hold someone to.</h1>
+    <p class="lede">
+      Most advisory firms hand you a recommendation and leave before it is tested.
+      The Strongpoint Firm advises owners and executives &mdash; then delivers through its own
+      operating companies and a vetted expert network. Contracts, payment and recruitment all
+      run through the firm, so you hold one agreement and one accountable party no matter how
+      many specialists the work takes.
+    </p>
+    <div class="hero-cta">
+      <a class="btn" href="contact.html">Start a conversation</a>
+      <a class="btn ghost" href="#practice">What we do</a>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="practice">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The practice</p>
+      <h2>Advisory before the decision. Delivery after it.</h2>
+      <p>Two operating companies, split by phase rather than by title &mdash; which is the only
+         split a client can actually navigate.</p>
+    </div>
+    <div class="lines">
+
+      <div class="line plate">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="n">01</span>
+        <h3>Advisory &amp; preconstruction</h3>
+        <p>The work that decides whether a project should happen, and on what terms. We
+           coordinate the specialists and hand you a written position you can act on.
+           Standing up now at advisory.strongpointops.com.</p>
+        <ul>
+          <li>Feasibility and capital planning</li>
+          <li>Survey, entitlement and land use</li>
+          <li>Design coordination and preconstruction</li>
+          <li>Due diligence on assets, operations and people</li>
+          <li>White-paper reports advising strategy and execution</li>
+        </ul>
+        <p class="via"><span>Delivered by</span> <a href="#companies">Strongpoint Advisory</a></p>
+      </div>
+
+      <div class="line plate">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="n">02</span>
+        <h3>Construction &amp; contracting</h3>
+        <p>End-to-end delivery under an Oregon CCB-licensed general contractor &mdash; owner's
+           representative project management and construction management, on the same job.</p>
+        <ul>
+          <li>Owner's representative project management</li>
+          <li>Construction management and general contracting</li>
+          <li>Design-build and ground-up delivery</li>
+          <li>Buyout, schedule and cost control</li>
+          <li>A vetted Pacific Northwest trade bench</li>
+        </ul>
+        <p class="via"><span>Delivered by</span>
+          <a href="https://build.strongpointops.com/">Strongpoint Build &#8599;</a></p>
+      </div>
+
+      <div class="line plate">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <span class="n">03</span>
+        <h3>Digital &amp; brand</h3>
+        <p>Search visibility, web development and digital brand systems, built to be owned by
+           you rather than rented from an agency. This one is still being stood up &mdash; ask
+           and we will tell you honestly where it is.</p>
+        <ul>
+          <li>Technical SEO and search visibility</li>
+          <li>Web development and site rebuilds</li>
+          <li>Digital brand and identity systems</li>
+        </ul>
+        <p class="via"><span>Delivered by</span> a subsidiary in development</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band" id="companies">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The firm</p>
+      <h2>What the parent actually does.</h2>
+      <p>The firm is not a holding company that sends invoices. It is the contracting party,
+         and that is deliberate.</p>
+    </div>
+    <div class="two">
+      <div>
+        <ul class="plist">
+          <li><span class="num">01</span><span class="tx"><b>Contracts.</b> One agreement with the firm, however many companies and specialists the work ends up needing. You are not chasing five counterparties.</span></li>
+          <li><span class="num">02</span><span class="tx"><b>Payment processing.</b> Billing, disbursement and lien-safe payment to trades and consultants run through the firm, with the paper trail that implies.</span></li>
+          <li><span class="num">03</span><span class="tx"><b>Recruitment.</b> We hire the subject-matter experts a project needs &mdash; forester, civil engineer, land-use attorney, safety professional &mdash; rather than keeping them on a payroll you fund year-round.</span></li>
+          <li><span class="num">04</span><span class="tx"><b>Partner vetting.</b> A partner gets on the list by performing and comes off it the same way. You are told who is doing the work before you engage.</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow dim">The operating companies</p>
+        <ul class="orgs">
+          <li><b>Strongpoint Advisory</b>
+            <em>Feasibility, capital planning, entitlement, diligence and white-paper reporting. Retainer and project-based.</em>
+            <span class="stat">advisory.strongpointops.com &mdash; standing up</span></li>
+          <li><b>Strongpoint Build</b>
+            <em>Strongpoint Construction LLC &mdash; Oregon CCB general contractor. Cost-plus, or a flat retainer on projects over $2.5M.</em>
+            <a href="https://build.strongpointops.com/">build.strongpointops.com &#8599;</a></li>
+          <li><b>Principal</b>
+            <em>The founder's portfolio &mdash; background, track record, standards, and the
+              values the teams are held to. Start here if you want to know who you would
+              actually be working with.</em>
+            <a href="https://principal.strongpointops.com/">principal.strongpointops.com &#8599;</a></li>
+          <li><b>Client portal</b>
+            <em>Invoices, service KPIs and reports for active clients. Included at no cost, not a product we sell.</em>
+            <a href="https://dashboard.strongpointops.com/">dashboard.strongpointops.com &#8599;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="engage">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow">Engagement</p>
+      <h2 style="font-size:clamp(26px,3.2vw,36px)">The firm advises. The companies execute. Nobody hides behind the other.</h2>
+      <p style="margin-top:20px">
+        A recommendation that never has to survive delivery is cheap to give. Ours does,
+        because the same principal answers for the advice and for the company carrying it out.
+      </p>
+      <p>
+        Where that creates a conflict &mdash; most obviously when Advisory's owner-side work
+        and Build's construction touch the same project &mdash; you are told in writing before
+        you engage, and you decide. We will bring in an independent party rather than sell you
+        both sides quietly.
+      </p>
+      <div class="bill">
+        <div><b>Advisory</b><span>Monthly retainer scoped to the engagement, or a fixed fee per
+          deliverable &mdash; a feasibility study, a diligence file, a white-paper report.</span></div>
+        <div><b>Construction</b><span>Cost-plus with an agreed fee, open book. On projects over
+          $2.5M, a flat retainer instead, so our fee does not rise when your job gets more
+          expensive.</span></div>
+        <div><b>Client portal</b><span>Invoices, service KPIs and reports, included with an
+          active engagement at no cost.</span></div>
+      </div>
+      <p style="color:var(--fg-faint);font-size:14.5px">
+        Working Oregon and SW Washington for construction; advisory and digital work are not
+        geographically limited.
+      </p>
+    </div>
+    <div>
+      <p class="eyebrow dim">How an engagement runs</p>
+      <ul class="plist">
+        <li><span class="num">01</span><span class="tx"><b>Scope the decision.</b> One conversation about what you own, what it is supposed to do, and what is actually at risk.</span></li>
+        <li><span class="num">02</span><span class="tx"><b>Written recommendation.</b> What we would do, in what order, what it costs, and what would have to be true for it to work.</span></li>
+        <li><span class="num">03</span><span class="tx"><b>Name the deliverer.</b> Which company or partner does the work, on what terms, with any conflict disclosed up front.</span></li>
+        <li><span class="num">04</span><span class="tx"><b>Execute and report.</b> Progress against the plan, in writing, at a cadence you can forward to a lender or a board.</span></li>
+        <li><span class="num">05</span><span class="tx"><b>Close and hand over.</b> A file your next manager can pick up cold.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="firm">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:30px">
+      <p class="eyebrow">The firm</p>
+      <h2>Small on purpose. Deep where it counts.</h2>
+      <p>A Marine, an MBA and a PMP, a licensed construction company, a software line, and a
+         bench of specialists hired to the problem rather than kept on the payroll.
+         <a href="https://principal.strongpointops.com/">Meet the principal &rarr;</a></p>
+    </div>
+    <div class="creds">
+      <div><div class="k">USMC</div><div class="v">Veteran-owned. Planning against a deadline that does not negotiate.</div></div>
+      <div><div class="k">MBA</div><div class="v">Capital structure, return, and the numbers behind the decision.</div></div>
+      <div><div class="k">PMP</div><div class="v">PMI-certified project management as a discipline, not a habit.</div></div>
+      <div><div class="k">CCB</div><div class="v">Construction delivered under an Oregon CCB-licensed general contractor.</div></div>
+      <div><div class="k">BCSP</div><div class="v">Safety audits by board-certified safety professionals.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="notes">
+  <div class="wrap news">
+    <div>
+      <p class="eyebrow">Market notes</p>
+      <h2 style="font-size:clamp(26px,3.2vw,36px)">What the ground is doing, roughly monthly.</h2>
+      <p style="margin-top:16px;color:var(--fg-dim)">
+        Construction cost and trade availability in the Pacific Northwest, rural land and
+        farmland transactions, timber, lending conditions, and the Oregon land-use and
+        permitting changes that quietly move a pro forma. Written for people making
+        decisions, not for an audience.
+      </p>
+      <p style="color:var(--fg-faint);font-size:14px">
+        The three questions below are not marketing &mdash; they decide whether we call you
+        or just send the newsletter. Either answer is a fine outcome.
+      </p>
+      <form id="subForm">
+        <div class="nf"><label for="n-email">Email</label>
+          <input id="n-email" name="email" type="email" required placeholder="you@company.com"></div>
+        <div class="qual">
+          <div class="nf"><label for="n-role">Your seat</label>
+            <select id="n-role" name="role">
+              <option>Owner or principal</option>
+              <option>Executive or board</option>
+              <option>Investor or lender</option>
+              <option>Developer or operator</option>
+              <option>Consultant or contractor</option>
+              <option>Just interested</option>
+            </select></div>
+          <div class="nf"><label for="n-scope">What's in front of you</label>
+            <select id="n-scope" name="scope">
+              <option>Nothing specific &mdash; reading</option>
+              <option>Land or property I can't oversee</option>
+              <option>A build or expansion</option>
+              <option>Entitlement or re-zoning</option>
+              <option>An acquisition or investment</option>
+              <option>A project that is going wrong</option>
+            </select></div>
+          <div class="nf"><label for="n-scale">Scale</label>
+            <select id="n-scale" name="scale">
+              <option>Not applicable</option>
+              <option>Under $250k</option>
+              <option>$250k &ndash; $1M</option>
+              <option>$1M &ndash; $2.5M</option>
+              <option>$2.5M &ndash; $10M</option>
+              <option>Over $10M</option>
+            </select></div>
+          <div class="nf"><label for="n-when">Timing</label>
+            <select id="n-when" name="when">
+              <option>No timeline</option>
+              <option>This quarter</option>
+              <option>Within six months</option>
+              <option>Within a year</option>
+              <option>Already under way</option>
+            </select></div>
+        </div>
+        <button class="btn" type="submit">Subscribe</button>
+        <p style="font-size:13px;color:var(--fg-faint);margin-top:12px">
+          One email a month at most. Not shared, not sold, unsubscribe in one click.</p>
+      </form>
+      <div class="said" id="subMsg">
+        <b>Noted.</b> You'll get the next issue. <span class="tk">[not wired to a list backend yet]</span>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow dim">Recent issues</p>
+      <ul class="issues">
+        <li><b>Douglas-fir stumpage, and why your harvest window moved</b>
+          <em>Export demand, mill capacity, and the cost of waiting a season.</em></li>
+        <li><b>The real cost of a rural water right in 2026</b>
+          <em>What buyers keep discovering after closing, and what to pull beforehand.</em></li>
+        <li><b>Shop, shed or ground-up: pricing a 12,000 sq ft expansion</b>
+          <em>Three delivery routes costed against the same programme.</em></li>
+      </ul>
+      <p style="color:var(--fg-faint);font-size:13.5px;margin-top:16px">
+        Back issues in full on
+        <a href="https://principal.strongpointops.com/notes.html" style="color:var(--family)">Principal &#8599;</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <p class="eyebrow">Next step</p>
+    <h2>Tell us the decision you are weighing.</h2>
+    <p>First conversation is thirty minutes and costs nothing. If it is not our work, we will
+       tell you whose it is.</p>
+    <div class="row">
+      <a class="btn" href="contact.html">Start a conversation</a>
+      <a class="btn ghost" href="#practice">See the three lines</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a href="index.html">Home</a>
+    <a href="#practice">Practice</a>
+    <a href="contact.html">Contact</a>
+    <span class="sp">
+      The Strongpoint Firm. Construction delivered by Strongpoint Construction LLC, Oregon
+      CCB-licensed general contractor. Operating companies:
+      <a href="https://build.strongpointops.com/">Build</a>,
+      <a href="https://dashboard.strongpointops.com/">Dashboard</a>,
+      <a href="https://principal.strongpointops.com/" class="xlink">Principal &#8599;</a>. &copy; 2026.
+    </span>
+  </div>
+</footer>
+
+<script>
+/* No list backend yet — record the qualifying answers in the mail body rather
+   than silently dropping them, and say plainly that nothing is stored. */
+document.getElementById('subForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=this, g=function(n){return (f.elements[n]&&f.elements[n].value||'').trim();};
+  var body=['Email: '+g('email'),'Seat: '+g('role'),'In front of them: '+g('scope'),
+            'Scale: '+g('scale'),'Timing: '+g('when')].join('\n');
+  f.style.display='none';
+  document.getElementById('subMsg').style.display='block';
+  /* [EMAIL] — replace before launch. */
+  window.location.href='mailto:?subject='+encodeURIComponent('Market Notes signup')+
+    '&body='+encodeURIComponent(body);
+});
+var mb=document.getElementById('menuBtn'), nv=document.getElementById('nav');
+mb.addEventListener('click',function(){
+  var open=nv.classList.toggle('open');
+  mb.setAttribute('aria-expanded',String(open));
+});
+</script>
+</body>
+</html>
