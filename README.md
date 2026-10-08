@@ -1,6 +1,11 @@
 # The Strongpoint Firm
 
-**Target: strongpointops.com** — the parent homepage. C-suite advisory, with the
+**Live: https://main.strongpointops.com** — the parent homepage.
+
+`main.` is the interim host while the apex transfers off Squarespace to Cloudflare.
+Every sibling site back-links here. When the transfer completes, point the Worker
+at the apex and update the `main.strongpointops.com` references across the other
+repos — they are plain absolute URLs, so it is a find-and-replace per repo. C-suite advisory, with the
 operating companies that deliver the work.
 
 Plain HTML/CSS/JS. **No build step, no framework, no npm dependencies.** Every
@@ -58,7 +63,7 @@ operating console.
 
 ## Placeholders
 
-`[surname]`, `[EMAIL]`, `[PHONE]`, `[CCB #]`, `[registry #]`. Confirm COBID /
+`[surname]`, `info@strongpointops.com`, `[PHONE]`, `[CCB #]`, `[registry #]`. Confirm COBID /
 DBE / SDVOSB before claiming any of it — the copy says only *veteran-owned*,
 which is the safe version. The contact form has no backend.
 

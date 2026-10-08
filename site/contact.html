@@ -7,7 +7,7 @@
 <meta name="description" content="Tell us the decision you are weighing. First conversation is thirty minutes and costs nothing.">
 <!--
   PLACEHOLDERS — fill before this is used commercially:
-  [surname] [EMAIL] [PHONE] [CCB #] [registry #]
+  [surname]  [PHONE — TBD]  [CCB #]  [registry #]
   Confirm COBID / DBE / SDVOSB status before claiming any of it.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -227,12 +227,12 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
     <div>
       <div class="sent" id="sent">
         <b>Ready to send.</b> Your mail client should have opened with this filled in. If it
-        did not, email <span class="tk">[EMAIL]</span> directly and paste the same details
+        did not, email <a href="mailto:info@strongpointops.com">info@strongpointops.com</a> directly and paste the same details
         &mdash; <span class="tk">[this form is not wired to a backend yet]</span>.
       </div>
       <div class="card">
         <h3>Direct</h3>
-        <p><span class="tk">[EMAIL]</span><br><span class="tk">[PHONE — optional]</span></p>
+        <p><a href="mailto:info@strongpointops.com">info@strongpointops.com</a></p>
         <p style="color:var(--fg-faint)">Response within one business day.</p>
       </div>
       <div class="card" style="margin-top:18px">
@@ -270,8 +270,8 @@ document.getElementById('intake').addEventListener('submit',function(e){
   var body=['Name: '+g('name'),'Email: '+g('email'),'Company: '+g('org'),
     'Location: '+g('where'),'Line of work: '+g('line'),'Stage: '+g('stage'),'',g('msg')].join('\n');
   document.getElementById('sent').style.display='block';
-  /* [EMAIL] — replace with the real address before launch. */
-  window.location.href='mailto:?subject='+encodeURIComponent('Enquiry — '+g('name'))+
+  /* Goes to info@strongpointops.com. */
+  window.location.href='mailto:info@strongpointops.com?subject='+encodeURIComponent('Enquiry — '+g('name'))+
     '&body='+encodeURIComponent(body);
 });
 var mb=document.getElementById('menuBtn'), nv=document.getElementById('nav');
