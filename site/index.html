@@ -86,6 +86,13 @@ nav a.xlink:hover{color:var(--accent-lo);border-bottom-color:var(--family)}
 h1{font-size:clamp(40px,6vw,72px);max-width:15ch}
 .lede{font-size:clamp(17px,1.5vw,20px);color:var(--fg-dim);margin:26px 0 0;max-width:62ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 0}
+/* Standing, stated once and quietly. Licensure qualifies you to be considered;
+   it is not a headline. */
+.standing{margin:28px 0 0;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--fg-dim);max-width:74ch;line-height:1.8}
+.standing span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent)}
+.standing i{color:var(--fg-faint);font-style:normal;padding:0 5px}
 
 .band{border-top:1px solid var(--line);padding:84px 0}
 .band.tint{background:var(--surface)}
@@ -207,19 +214,26 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">C-suite advisory &middot; Delivered through our own companies</p>
-    <h1>Advice you can hold someone to.</h1>
+    <p class="eyebrow">Tactical consulting &middot; Strategic construction management</p>
+    <h1>We price it honestly.<br><span class="b">Then we build it.</span></h1>
     <p class="lede">
-      Most advisory firms hand you a recommendation and leave before it is tested.
-      The Strongpoint Firm advises owners and executives &mdash; then delivers through its own
-      operating companies and a vetted expert network. Contracts, payment and recruitment all
-      run through the firm, so you hold one agreement and one accountable party no matter how
-      many specialists the work takes.
+      Consultants hand you a recommendation and leave before it is tested. Contractors hand
+      you a number and hope you don't test it. Strongpoint is both halves under one roof and
+      deliberately separate inside it: an independent consultancy that prices and
+      pressure-tests the work, and a licensed general contractor that delivers it. Use either
+      on its own. Most people use both.
     </p>
     <div class="hero-cta">
       <a class="btn" href="contact.html">Start a conversation</a>
       <a class="btn ghost" href="#practice">What we do</a>
     </div>
+    <p class="standing">
+      <span>SDVOSB</span> service-disabled veteran-owned small business
+      <i>&middot;</i> <span>Oregon CCB</span> licensed general contractor
+      <span class="tk">[CCB #]</span>
+      <i>&middot;</i> bonded <i>&middot;</i> insured
+      <i>&middot;</i> registered with the Oregon Secretary of State
+    </p>
   </div>
 </section>
 
@@ -320,7 +334,11 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
               actually be working with.</em>
             <a href="https://principal.strongpointops.com/">principal.strongpointops.com &#8599;</a></li>
           <li><b>Client portal</b>
-            <em>Invoices, service KPIs and reports for active clients. Included at no cost, not a product we sell.</em>
+            <em>A document and findings archive first &mdash; every report, estimate, invoice
+              and decision in one searchable place that outlives the engagement. Live
+              dashboards available where they earn their keep. Or none of it: if you have
+              systems you want us working inside, we work inside them and report the way you
+              already communicate. Free, optional, never a product we sell.</em>
             <a href="https://dashboard.strongpointops.com/">dashboard.strongpointops.com &#8599;</a></li>
         </ul>
       </div>
@@ -349,8 +367,10 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
         <div><b>Construction</b><span>Cost-plus with an agreed fee, open book. On projects over
           $2.5M, a flat retainer instead, so our fee does not rise when your job gets more
           expensive.</span></div>
-        <div><b>Client portal</b><span>Invoices, service KPIs and reports, included with an
-          active engagement at no cost.</span></div>
+        <div><b>Client portal</b><span>A document and findings archive &mdash; reports,
+          estimates, invoices and decisions in one place that outlives the job &mdash; with
+          live dashboards where they are worth having. Free with an active engagement, and
+          declinable: we will work inside your systems and communicate your way instead.</span></div>
       </div>
       <p style="color:var(--fg-faint);font-size:14.5px">
         Working Oregon and SW Washington for construction; advisory and digital work are not
@@ -380,11 +400,13 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
          <a href="https://principal.strongpointops.com/">Meet the principal &rarr;</a></p>
     </div>
     <div class="creds">
-      <div><div class="k">USMC</div><div class="v">Veteran-owned. Planning against a deadline that does not negotiate.</div></div>
+      <div><div class="k">SDVOSB</div><div class="v">Service-disabled veteran-owned small business. <span class="tk">[verify cert before relying on this]</span></div></div>
+      <div><div class="k">USMC</div><div class="v">Infantry Officer, Captain. Planning against a clock that does not negotiate.</div></div>
       <div><div class="k">MBA</div><div class="v">Capital structure, return, and the numbers behind the decision.</div></div>
       <div><div class="k">PMP</div><div class="v">PMI-certified project management as a discipline, not a habit.</div></div>
-      <div><div class="k">CCB</div><div class="v">Construction delivered under an Oregon CCB-licensed general contractor.</div></div>
-      <div><div class="k">BCSP</div><div class="v">Safety audits by board-certified safety professionals.</div></div>
+      <div><div class="k">CCB</div><div class="v">Oregon CCB-licensed general contractor <span class="tk">[CCB #]</span>, registered with the Secretary of State.</div></div>
+      <div><div class="k">BCSP</div><div class="v">Safety audits against OSHA standards by board-certified professionals.</div></div>
+      <div><div class="k">BONDED</div><div class="v">Surety bond and general liability in force. Certificates with every proposal.</div></div>
     </div>
   </div>
 </section>
@@ -462,9 +484,9 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
         <li><b>Shop, shed or ground-up: pricing a 12,000 sq ft expansion</b>
           <em>Three delivery routes costed against the same program.</em></li>
       </ul>
-      <p style="color:var(--fg-faint);font-size:13.5px;margin-top:16px">
-        Read them in full on
-        <a href="https://principal.strongpointops.com/notes.html" style="color:var(--family)">Principal &#8599;</a>.
+      <p style="color:var(--fg-dim);font-size:13.5px;margin-top:16px">
+        Each note is a short white paper. Subscribers get them in full;
+        <span class="tk">[a permanent home for the archive is being stood up]</span>.
       </p>
     </div>
   </div>
