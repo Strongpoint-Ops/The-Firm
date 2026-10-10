@@ -22,9 +22,12 @@
   --ground:#f2f2f3; --surface:#e9e9ea; --surface-2:#e0e0e2;
   --line:color-mix(in srgb,#1d1f20 16%,transparent);
   --line-bright:color-mix(in srgb,#1d1f20 30%,transparent);
-  --fg:#1d1f20; --fg-dim:#5d5d60; --fg-faint:#7a7a7d;
-  --accent:#4c7094; --accent-lo:#2c455d; --accent-hi:#416180;
-  --family:#6f8fa8;
+  --fg:#1d1f20; --fg-dim:#5d5d60; --fg-faint:#6a6a6d;
+  --accent:#486c8f; --accent-lo:#2c455d; --accent-hi:#416180;
+  /* Light-ground variant. #4e6c84 is the family colour on the dark
+     properties; on this ground it measures 3.04:1 and fails AA for link
+     text, so the parent carries a darkened one at the same hue. */
+  --family:#4e6c84;
   --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Barlow",system-ui,-apple-system,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -40,7 +43,7 @@ a{color:var(--accent)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--accent);margin:0 0 16px}
-.eyebrow.dim{color:var(--fg-faint)}
+.eyebrow.dim{color:var(--accent)}
 
 header{position:sticky;top:0;z-index:40;background:rgba(242,242,243,.92);
   border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
@@ -103,7 +106,7 @@ h1{font-size:clamp(40px,6vw,72px);max-width:15ch}
 .line .via{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--fg-faint);
   border-top:1px solid var(--line);padding-top:14px;margin:auto 0 0}
 .line .via a{color:var(--family);text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb,#6f8fa8 45%,transparent)}
+  border-bottom:1px solid color-mix(in srgb,#4e6c84 45%,transparent)}
 .line .via a:hover{color:var(--accent-lo)}
 .line .via span{color:var(--fg-faint)}
 
