@@ -1,12 +1,16 @@
 # The Strongpoint Firm
 
-**Live: https://main.strongpointops.com** — the parent homepage.
+**Live: https://strongpointops.com** — the parent homepage, on the apex.
 
-`main.` is the interim host while the apex transfers off Squarespace to Cloudflare.
-Every sibling site back-links here. When the transfer completes, point the Worker
-at the apex and update the `main.strongpointops.com` references across the other
-repos — they are plain absolute URLs, so it is a find-and-replace per repo. C-suite advisory, with the
-operating companies that deliver the work.
+Every sibling site back-links to the apex. The domain moved off Squarespace to
+Cloudflare on 2026-10-15; the zone is on Cloudflare nameservers, but the apex and
+`www` records must be attached to this Worker as a custom domain in the dashboard
+before they stop proxying to the Squarespace origin. Until then `curl -sI
+https://strongpointops.com/` answers a Squarespace 301 to `www` (tell-tale:
+a `crumb` cookie and an `x-contextid` header), not this site.
+
+The firm holds the contracts, the payment processing, the recruitment and the
+partner vetting. The operating companies deliver the work.
 
 Plain HTML/CSS/JS. **No build step, no framework, no npm dependencies.** Every
 page is self-contained.
