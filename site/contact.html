@@ -206,33 +206,24 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
         <div class="f"><label for="f-org">Company</label><input id="f-org" name="org" type="text"></div>
         <div class="f"><label for="f-where">Where</label><input id="f-where" name="where" type="text" placeholder="County and state"></div>
       </div>
-      <div class="f"><label for="f-line">Which line of work</label>
-        <select id="f-line" name="line">
-          <option>Digital, SEO or brand development</option>
-          <option>Construction management or contracting</option>
-          <option>Owner's representation</option>
-          <option>Advisory — not sure which yet</option>
+      <div class="f"><label for="f-need">What do you need</label>
+        <select id="f-need" name="need">
+          <option>Advisory / consulting</option>
+          <option>Estimating</option>
+          <option>Project / construction management</option>
+          <option>Not sure yet</option>
         </select></div>
-      <div class="f"><label for="f-stage">Where you are</label>
-        <select id="f-stage" name="stage">
-          <option>Thinking about it</option>
-          <option>Evaluating, pre-commitment</option>
-          <option>Committed, not started</option>
-          <option>Under way and drifting</option>
-          <option>In trouble</option>
-        </select></div>
-      <div class="f"><label for="f-msg">The decision, in your words</label>
-        <textarea id="f-msg" name="msg" placeholder="The more specific, the more useful the first call is."></textarea></div>
+      <div class="f"><label for="f-msg">What you need, in your words</label>
+        <textarea id="f-msg" name="msg" required placeholder="The more specific you are, the more useful the first call is."></textarea></div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+        <label for="f-company-url">Company URL</label>
+        <input id="f-company-url" name="company_url" type="text" tabindex="-1" autocomplete="off"></div>
       <button class="btn" type="submit">Send</button>
       <p style="font-size:13px;color:var(--fg-faint);margin-top:14px">
         Held in confidence. Not shared, not sold, not used as a case study without written consent.</p>
     </form>
     <div>
-      <div class="sent" id="sent">
-        <b>Ready to send.</b> Your mail client should have opened with this filled in. If it
-        did not, email <a href="mailto:info@strongpointops.com">info@strongpointops.com</a> directly and paste the same details
-        &mdash; <span class="tk">[this form is not wired to a backend yet]</span>.
-      </div>
+      <div class="sent" id="sent"></div>
       <div class="card">
         <h3>Direct</h3>
         <p><a href="mailto:info@strongpointops.com">info@strongpointops.com</a></p>
@@ -266,17 +257,61 @@ footer{border-top:1px solid var(--line);padding:36px 0 52px;font-size:13.5px;col
   </div>
 </footer>
 <script>
-/* No backend yet — compose a mail instead of pretending the form posted. */
-document.getElementById('intake').addEventListener('submit',function(e){
-  e.preventDefault();
-  var f=this, g=function(n){return (f.elements[n]&&f.elements[n].value||'').trim();};
-  var body=['Name: '+g('name'),'Email: '+g('email'),'Company: '+g('org'),
-    'Location: '+g('where'),'Line of work: '+g('line'),'Stage: '+g('stage'),'',g('msg')].join('\n');
-  document.getElementById('sent').style.display='block';
-  /* Goes to info@strongpointops.com. */
-  window.location.href='mailto:info@strongpointops.com?subject='+encodeURIComponent('Inquiry — '+g('name'))+
-    '&body='+encodeURIComponent(body);
-});
+/* Real submission. No mail client, no third party in the browser: the page
+   POSTs JSON to the firm's Worker and repaints itself with the answer. */
+(function () {
+  var form = document.getElementById('intake');
+  if (!form) return;
+  var panel = document.getElementById('sent');
+  var btn = form.querySelector('button[type=submit]');
+  var rendered = Date.now();
+  var ENDPOINT = 'https://strongpointops.com/api/lead';
+  var SOURCE = 'firm';
+
+  function say(html, ok) {
+    panel.innerHTML = html;
+    panel.style.display = 'block';
+    panel.style.borderColor = ok ? '' : '#c0574a';
+    panel.setAttribute('role', 'status');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var g = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        name: g('name'), email: g('email'), org: g('org'), where: g('where'),
+        need: g('need'), msg: g('msg'), company_url: g('company_url'),
+        elapsed: Date.now() - rendered, source: SOURCE
+      })
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; })
+        .then(function (j) { return { ok: r.ok, body: j }; }); })
+      .then(function (res) {
+        if (res.ok && res.body.ok) {
+          form.reset(); rendered = Date.now();
+          say('<b>Sent.</b> It is in front of a person, not a queue. You will hear back ' +
+              'within one business day \u2014 and if it is not our work, we will tell you whose it is.', true);
+        } else {
+          say('<b>That did not send.</b> ' +
+              ((res.body && res.body.error) || 'Something went wrong at our end.') +
+              ' You can also email <a href="mailto:info@strongpointops.com">info@strongpointops.com</a>.', false);
+        }
+      })
+      .catch(function () {
+        say('<b>That did not send.</b> It looks like a connection problem rather than ' +
+            'anything you typed. Try again, or email ' +
+            '<a href="mailto:info@strongpointops.com">info@strongpointops.com</a>.', false);
+      })
+      .then(function () { btn.disabled = false; btn.textContent = label; });
+  });
+})();
 var mb=document.getElementById('menuBtn'), nv=document.getElementById('nav');
 mb.addEventListener('click',function(){
   var open=nv.classList.toggle('open');
