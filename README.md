@@ -40,7 +40,7 @@ service KPIs and reports, included free with an active engagement. The page says
 Contracts, payment processing, recruitment and partner vetting all run through
 the firm. That is the actual differentiator: one agreement and one accountable
 party however many specialists a job takes. It is not a holding company that
-forwards invoices.
+forward invoices.
 
 ## The newsletter is the lead generator
 
@@ -61,7 +61,7 @@ operating console.
 - ground `#f2f2f3` / surface `#e9e9ea`
 - accent `#4c7094` (4.63:1 — the AA-corrected value, **not** the old `#5980a6`
   which measured 3.71:1 and failed for link text)
-- family colour `#6f8fa8` for links that leave the property, with `↗`
+- family color `#6f8fa8` for links that leave the property, with `↗`
 - Barlow Condensed 600 / Barlow / IBM Plex Mono
 - blueprint corner marks on framed panels
 
