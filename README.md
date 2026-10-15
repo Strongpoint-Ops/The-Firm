@@ -15,6 +15,37 @@ partner vetting. The operating companies deliver the work.
 Plain HTML/CSS/JS. **No build step, no framework, no npm dependencies.** Every
 page is self-contained.
 
+## Open: email authentication (deferred 2026-10-15)
+
+`info@strongpointops.com` runs on Google Workspace (`MX -> smtp.google.com`).
+Done so far, in the zone:
+
+- **SPF** — `v=spf1 include:_spf.google.com ~all`. Live and parsing.
+- **DMARC** — `v=DMARC1; p=none; rua=...@dmarc-reports.cloudflare.net`
+  via Cloudflare DMARC Management. **Monitoring only — it does not stop
+  spoofing.** It reports what receivers see and delivers the mail anyway.
+
+Still missing, in priority order:
+
+1. **DKIM.** The gap that matters. Google Admin -> Apps -> Google Workspace ->
+   Gmail -> Authenticate email -> Generate new record (2048-bit, selector
+   `google`), then add the TXT at `google._domainkey` (DNS only) and click
+   **Start authentication** back in Google.
+   DMARC passes if SPF **or** DKIM passes with alignment, and forwarding
+   breaks SPF while preserving DKIM — so without DKIM, mail an investor
+   forwards to a partner fails, and `p=reject` can never be safe.
+2. **Ramp DMARC.** 2-4 weeks at `p=none`, confirm every legitimate sender
+   passes in the Cloudflare dashboard, then `p=quarantine` (optionally
+   `pct=25` first), then `p=reject`.
+3. **Before any newsletter goes out**, add that sender's `include:` to the
+   SPF record. One SPF record per domain, ever — edit the existing TXT, never
+   add a second. Two records is a permerror and breaks authentication
+   outright. Keep `~all` until that include is in; `-all` would make the
+   first market note vanish.
+
+Until step 1 and 2 are done, anyone can still send mail that appears to come
+from this domain.
+
 ```
 wrangler.jsonc   Cloudflare config — static assets only, no Worker script
 site/
